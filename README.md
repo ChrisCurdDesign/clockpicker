@@ -75,6 +75,7 @@ if (something) {
 | donetext | '完成' | done button text |
 | autoclose | false | auto close when minute is selected |
 | twelvehour | false | enables twelve hour mode with AM & PM buttons |
+| allowMinute | true | set to false to disable minute selection |
 | vibrate | true | vibrate the device when dragging clock hand |
 | fromnow | 0 | set default time to * milliseconds from now (using with default = 'now') |
 | init | | callback function triggered after the colorpicker has been initiated |
