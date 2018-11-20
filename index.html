@@ -199,7 +199,7 @@ $('#check-minutes').click(function(e){
 				&lt;script type="text/javascript"&gt;
 				var input = $('.clockpicker-with-callbacks').clockpicker({
 					donetext: 'Done',
-						init: function() { 
+						init: function() {
 							console.log("colorpicker initiated");
 						},
 						beforeShow: function() {
@@ -265,13 +265,18 @@ $('#check-minutes').click(function(e){
 	</tr>
 	<tr>
 	<td>donetext</td>
-	<td>'完成'</td>
+	<td>'Done'</td>
 	<td>done button text</td>
 	</tr>
 	<tr>
 	<td>autoclose</td>
 	<td>false</td>
 	<td>auto close when minute is selected</td>
+	</tr>
+	<tr>
+	<td>allowMinute</td>
+	<td>true</td>
+	<td>set to false to disable minute selection</td>
 	</tr>
 	<tr>
 	<td>vibrate</td>
@@ -389,7 +394,7 @@ $('#check-minutes').click(function(e){
 <div class="container">
 	<div class="footer">
 		<p>
-			&copy; Wang Shenwei. 
+			&copy; Wang Shenwei.
 			<a href="https://github.com/weareoutman/clockpicker">Fork me on GitHub</a>
 		</p>
 	</div>
@@ -412,7 +417,7 @@ var input = $('#single-input').clockpicker({
 
 $('.clockpicker-with-callbacks').clockpicker({
 		donetext: 'Done',
-		init: function() { 
+		init: function() {
 			console.log("colorpicker initiated");
 		},
 		beforeShow: function() {
