@@ -5,16 +5,21 @@ var gulp = require('gulp'),
 	concat = require('gulp-concat'),
 	qunit = require('gulp-qunit'),
 	replace = require('gulp-replace'),
+	fs = require('fs'),
+	// Replace disclaimer
+	disclaimer = fs.readFileSync('src/disclaimer', "utf8"),
+	disclaimerRegExp = /\{disclaimer\}/,
 	// Replace package.version
 	version = require('./package').version,
 	versionRegExp = /\{package\.version\}/;
 
 // Rename and uglify scripts
 function js(prefix) {
-	gulp.src('src/clockpicker.js')
+	return gulp.src('src/clockpicker.js')
 		.pipe(rename({
 			prefix: prefix + '-'
 		}))
+		.pipe(replace(disclaimerRegExp, disclaimer))
 		.pipe(replace(versionRegExp, version))
 		.pipe(gulp.dest('dist'))
 		.pipe(uglify({
@@ -36,9 +41,10 @@ function css(prefix) {
 		stream = gulp.src(['src/standalone.css', 'src/clockpicker.css'])
 			.pipe(concat('clockpicker.css'));
 	}
-	stream.pipe(rename({
+	return stream.pipe(rename({
 			prefix: prefix + '-'
 		}))
+		.pipe(replace(disclaimerRegExp, disclaimer))
 		.pipe(replace(versionRegExp, version))
 		.pipe(gulp.dest('dist'))
 		.pipe(minifyCSS({
@@ -50,19 +56,22 @@ function css(prefix) {
 		.pipe(gulp.dest('dist'));
 }
 
-gulp.task('js', function() {
+gulp.task('js', function(done) {
 	js('bootstrap');
 	js('jquery');
+	done();
 });
 
-gulp.task('css', function() {
+gulp.task('css', function(done) {
 	css('bootstrap');
 	css('jquery');
+	done();
 });
 
-gulp.task('watch', function() {
-	gulp.watch('src/*.js', ['js']);
-	gulp.watch('src/*.css', ['css']);
+gulp.task('watch', function(done) {
+	gulp.watch('src/*.js', gulp.series('js'));
+	gulp.watch('src/*.css', gulp.series('css'));
+	done();
 });
 
 gulp.task('test', function() {
@@ -70,4 +79,4 @@ gulp.task('test', function() {
         .pipe(qunit());
 });
 
-gulp.task('default', ['js', 'css', 'watch']);
+gulp.task('default', gulp.series('js', 'css', 'watch'));

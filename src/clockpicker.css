@@ -1,7 +1,5 @@
 /*!
- * ClockPicker v{package.version} for Bootstrap (http://weareoutman.github.io/clockpicker/)
- * Copyright 2014 Wang Shenwei.
- * Licensed under MIT (https://github.com/weareoutman/clockpicker/blob/gh-pages/LICENSE)
+{disclaimer}
  */
 
 .clockpicker .input-group-addon {
@@ -33,6 +31,9 @@
 	text-align: center;
 }
 .clockpicker-popover .popover-title span {
+  cursor: default;
+}
+.clockpicker-popover.allow-minutes .popover-title span {
 	cursor: pointer;
 }
 .clockpicker-popover .popover-content {

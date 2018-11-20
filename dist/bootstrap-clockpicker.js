@@ -1,7 +1,7 @@
 /*!
- * ClockPicker v0.0.7 (http://weareoutman.github.io/clockpicker/)
- * Copyright 2014 Wang Shenwei.
- * Licensed under MIT (https://github.com/weareoutman/clockpicker/blob/gh-pages/LICENSE)
+ * ClockPicker v1.0.0 (https://chriscurddesign.github.io/clockpicker/)
+ * Branch maintained by Ben Beckford
+ * Licensed under MIT (https://github.com/chriscurddesign/clockpicker/blob/gh-pages/LICENSE)
  */
 
 ;(function(){
@@ -174,7 +174,11 @@
 		popover.addClass('clockpicker-align-' + options.align);
 
 		this.spanHours.click($.proxy(this.toggleView, this, 'hours'));
-		this.spanMinutes.click($.proxy(this.toggleView, this, 'minutes'));
+		if(options.allowMinutes)
+		{
+			popover.addClass('allow-minutes');
+			this.spanMinutes.click($.proxy(this.toggleView, this, 'minutes'));
+		}
 
 		// Show or toggle
 		input.on('focus.clockpicker click.clockpicker', $.proxy(this.show, this));
@@ -293,7 +297,7 @@
 				if ((space || moved) && x === dx && y === dy) {
 					self.setHand(x, y);
 				}
-				if (self.currentView === 'hours') {
+				if (self.currentView === 'hours' && options.allowMinutes) {
 					self.toggleView('minutes', duration / 2);
 				} else {
 					if (options.autoclose) {
@@ -367,10 +371,11 @@
 		fromnow: 0,          // set default time to * milliseconds from now (using with default = 'now')
 		placement: 'bottom', // clock popover placement
 		align: 'left',       // popover arrow align
-		donetext: '完成',    // done button text
+		donetext: 'Done',    // done button text
 		autoclose: false,    // auto close when minute is selected
-		twelvehour: false, // change to 12 hour AM/PM clock from 24 hour
-		vibrate: true        // vibrate the device when dragging clock hand
+		twelvehour: false,   // change to 12 hour AM/PM clock from 24 hour
+		vibrate: true,       // vibrate the device when dragging clock hand
+		allowMinutes: true   // enable minutes step
 	};
 
 	// Show or hide popover

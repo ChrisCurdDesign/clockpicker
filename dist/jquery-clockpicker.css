@@ -1,7 +1,7 @@
 /*!
- * ClockPicker v0.0.7 for jQuery (http://weareoutman.github.io/clockpicker/)
- * Copyright 2014 Wang Shenwei.
- * Licensed under MIT (https://github.com/weareoutman/clockpicker/blob/gh-pages/LICENSE)
+ * ClockPicker v1.0.0 (https://chriscurddesign.github.io/clockpicker/)
+ * Branch maintained by Ben Beckford
+ * Licensed under MIT (https://github.com/chriscurddesign/clockpicker/blob/gh-pages/LICENSE)
  *
  * Bootstrap v3.1.1 (http://getbootstrap.com)
  * Copyright 2011-2014 Twitter, Inc.
@@ -216,9 +216,7 @@
 }
 
 /*!
- * ClockPicker v{package.version} for Bootstrap (http://weareoutman.github.io/clockpicker/)
- * Copyright 2014 Wang Shenwei.
- * Licensed under MIT (https://github.com/weareoutman/clockpicker/blob/gh-pages/LICENSE)
+{disclaimer}
  */
 
 .clockpicker .input-group-addon {
@@ -250,6 +248,9 @@
 	text-align: center;
 }
 .clockpicker-popover .popover-title span {
+  cursor: default;
+}
+.clockpicker-popover.allow-minutes .popover-title span {
 	cursor: pointer;
 }
 .clockpicker-popover .popover-content {
